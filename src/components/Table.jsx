@@ -8,7 +8,7 @@ class Table extends React.Component {
 
 		const dishes = table.dishes.map((dishItem, index) => {
 			return (
-				<li key={dishItem.id}><a href="#" onClick={() => onDishClick(dishItem.dish.tableId, dishItem.id)}>{dishItem.dish.name}</a></li>
+				<li key={dishItem.id}><a href="#" onClick={() => onDishClick(dishItem.id)}>{dishItem.dish.name}</a></li>
 			);
 		});
 

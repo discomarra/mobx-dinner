@@ -1,9 +1,9 @@
 import React from "react";
 
-export default ({onClick, name, id}) => {
+export default ({onClick, dish}) => {
 	return (
 		<li>
-			<a href="#" onClick={() => onClick(id)}> <span>{name}</span></a>
+			<a href="#" onClick={() => onClick(dish)}> <span>{dish.name}</span></a>
 		</li>
 	);
 }

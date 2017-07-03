@@ -1,3 +1,4 @@
+import {v4} from "uuid";
 import {observable, action} from "mobx";
 import Table from "./Table";
 
@@ -9,9 +10,35 @@ class TablesStore {
 	}
 
 	@action selectTable = (tableId) => {
-		this.tables.forEach((table) => {
-			table.isSelected = tableId === table.id;
+		this.tables.forEach(table => table.isSelected = tableId === table.id);
+	}
+
+	@action addDishToTable = (dish) => {
+		let newDish = {
+			dish: {...dish, tableId: 0},
+			id: v4()
+		};
+
+		const selectedTableArray = this.tables.filter(table => {
+			if(table.isSelected) {
+				newDish.dish.tableId = table.id;
+				return true;
+			}
+
+			return false;
 		});
+		
+		if(selectedTableArray === undefined || selectedTableArray.length === 0) {
+			console.error("Select a table first");
+			return;
+		}
+
+		selectedTableArray[0].dishes.push(newDish);
+	}
+
+	@action removeDishFromTable = (tableId, dishItemId) => {
+		const table = this.tables.filter(table => table.id === tableId)[0];
+		table.dishes = table.dishes.filter(dishItem => dishItem.id !== dishItemId);
 	}
 }
 

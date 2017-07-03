@@ -1,11 +1,25 @@
-import {observable} from "mobx";
+import {observable, action} from "mobx";
 import Dish from "./Dish";
 
 class DishesStore {
 	@observable dishes;
+	@observable searchCriteria;
 
 	constructor(dishes = []) {
 		this.dishes = dishes;
+		this.searchCriteria = "";
+	}
+
+	getDishById(id) {
+		return this.dishes.find(dish => dish.id === id);
+	}
+
+	@action setSearchCriteria(crit) {
+		this.searchCriteria = crit;
+	}
+
+	@action addNewDish(dishName) {
+		this.dishes.push(new Dish(undefined, dishName));
 	}
 }
 

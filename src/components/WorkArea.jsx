@@ -5,13 +5,13 @@ import Separator from "./Separator.jsx";
 
 class WorkArea extends React.Component {
 	render() {
-		const {dishesStore, tablesStore} = this.props;
+		const {dishesStore} = this.props;
 
 		return (
 			<div className="WorkArea">
-				<TablesArea tablesStore={tablesStore}/>
-				<Separator dishesStore={dishesStore}/>
-				{/*<Menu />*/}
+				<TablesArea/>
+				<Separator/>
+				<Menu dishesStore={dishesStore}/>
 			</div>
 		);
 	}
